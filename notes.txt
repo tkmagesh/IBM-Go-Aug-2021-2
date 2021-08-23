@@ -127,7 +127,7 @@ Functions
     - Higher Order functions
         - functions can be assigned to variables
         - functions can be passed as arguments to other functions
-
+        - functions can be returned from other functions
 
 
 
