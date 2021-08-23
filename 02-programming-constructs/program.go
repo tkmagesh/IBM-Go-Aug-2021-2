@@ -17,9 +17,7 @@ func main() {
 		}
 	*/
 
-	var x = 100
-
-	_ = x
+	//var x = 100
 
 	if no := 21; no%2 == 0 {
 		fmt.Println(no, " is an even number")
@@ -27,4 +25,27 @@ func main() {
 		fmt.Println(no, " is an odd number")
 	}
 
+	//for construct
+	sum := 0
+	for i := 0; i < 10; i++ {
+		sum += i
+	}
+	fmt.Println(sum)
+
+	//using 'for' like a while construct
+	numSum := 1
+	for numSum < 100 {
+		numSum += numSum
+	}
+	fmt.Println(numSum)
+
+	//infinite loop
+	x := 1
+	for {
+		x += x
+		if x > 100 {
+			break
+		}
+	}
+	fmt.Println(x)
 }
