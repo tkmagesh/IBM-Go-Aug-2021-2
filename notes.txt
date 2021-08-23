@@ -124,6 +124,9 @@ Assignment - 1
 Functions
     - can return more than one result
     - variadic functions
+    - Higher Order functions
+        - functions can be assigned to variables
+        - functions can be passed as arguments to other functions
 
 
 
