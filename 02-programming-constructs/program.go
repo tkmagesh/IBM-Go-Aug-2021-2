@@ -92,4 +92,33 @@ func main() {
 	default:
 		fmt.Println("Unknown score")
 	}
+
+	n := 4
+	switch n {
+	case 0:
+		fmt.Println("n is 0")
+	case 1:
+		fmt.Println("n is 1")
+		fallthrough
+	case 2:
+		fmt.Println("n <= 2")
+		fallthrough
+	case 3:
+		fmt.Println("n <= 3")
+		fallthrough
+	case 4:
+		fmt.Println("n <= 4")
+		fallthrough
+	case 5:
+		fmt.Println("n <= 5")
+		fallthrough
+	case 6:
+		fmt.Println("n <= 6")
+	case 7:
+		fmt.Println("n <= 7")
+		fallthrough
+	case 8:
+		fmt.Println("n <= 8")
+
+	}
 }
