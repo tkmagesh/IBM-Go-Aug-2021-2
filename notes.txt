@@ -1,0 +1,80 @@
+Magesh Kuppan
+
+Methodology
+    No Powerpoint
+    No prewritten code
+    50% of the participants completing the assignments to continue
+    Be prepared to share your solution online
+
+Schedule
+    Commence    : 09:00 Hrs
+    Tea Break   : 11:00 Hrs (20 mins)
+    Lunch Break : 13:00 Hrs (1 Hr)
+    Tea Break   : 15:30 Hrs (20 mins)
+    Wind up     : 17:50 Hrs
+
+About You
+    Name
+    Total Experience
+    Primary Skillset
+    Experience in Golang (if any)
+    Any interesting book you read / shows you watched recently
+
+
+Food & Faith (Shobha Narayanan)
+A man called Ove
+
+Why Golang?
+    - Faster compilation
+    - Garbage Collector
+    - Better tooling 
+
+    - Simplicity
+        ONLY 25 keywords
+            package, var, func, if, swtich, for, fallthrough, break, continue, type, interface, struct, close, select, chan, return, defer, go, map, range, panic, recover, bool, string, int, int8, int16, int32, int64, uint, uint8, uint16, uint32, uint64, float32, float64, complex64, complex128, byte, rune, time, error, nil
+        No classes
+        No inheritance (only composition)
+        No Generics
+        No access modifiers
+        No exception (only errors)
+
+    - Concurrency
+        Goroutines
+        Builtin Scheduler
+        Built for concurrency
+            Language features
+                go keyword
+                channel datatype
+                select statement
+                close function
+        Parallel ready
+
+    - compiled
+    - No VMs or runtimes
+
+
+TED
+    Paradox of choice
+        By Barry Schwartz
+    Stumbling on Happiness
+
+
+    
+var t = new System.Threading.Thread()
+t.Start()
+
+func f1(){
+
+}
+
+func f2(){
+
+}
+
+func main(){
+    go f1()
+    go f2()
+}
+
+http://code.visualstudio.com/
+
