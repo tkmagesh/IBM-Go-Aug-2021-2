@@ -105,6 +105,21 @@ Data Types in Golang
     rune (alias for int32) (represents a unicode code point)
 
 
+Assignment - 1
+    Build an interactive calculator
+
+    Display the following menu
+        1. Add
+        2. Subtract
+        3. Multiply
+        4. Divide
+        5. Exit
+
+    Keep displaying the menu until the user chooses 'exit'
+    if the user chooses 1 - 4
+        ask the user for two numbers
+        display the result of the operation
+
 
 
 
