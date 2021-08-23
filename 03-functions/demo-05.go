@@ -6,8 +6,8 @@ func main() {
 	hello := getFn()
 	hello()
 
-	add := wrap(add)
-	subtract := wrap(subtract)
+	add := wrap("add", add)
+	subtract := wrap("subtract", subtract)
 	add(100, 200)
 	subtract(100, 200)
 }
@@ -18,11 +18,11 @@ func getFn() func() {
 	}
 }
 
-func wrap(oper func(int, int) int) func(int, int) {
+func wrap(fnName string, oper func(int, int) int) func(int, int) {
 	return func(a, b int) {
-		fmt.Println("Before invocation")
+		fmt.Printf("Before invoking %s function\n", fnName)
 		fmt.Println(oper(a, b))
-		fmt.Println("After invocation")
+		fmt.Printf("After invoking %s function\n", fnName)
 	}
 }
 

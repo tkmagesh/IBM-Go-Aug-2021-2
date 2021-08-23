@@ -129,6 +129,23 @@ Functions
         - functions can be passed as arguments to other functions
         - functions can be returned from other functions
 
+Assignment - 2
+    create a function 'increment()' that keeps incrementing the number from 0 and returns it
+        NOTE : no other part of the application should be able to influence the outcome of 'increment' function
 
 
 
+Memomization
+
+func isPrime(n int){
+    fmt.Printlf("Processing %d\n", n)
+    //processing
+    return true/false
+}
+
+isPrime(10) //=> processing, returning false
+isPrime(10) //=> NO processing, returning false
+isPrime(10) //=> NO processing, returning false
+isPrime(11) //=> processing, returning true
+isPrime(11) //=> NO processing, returning true
+isPrime(10) //=> processing, returning false
