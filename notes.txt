@@ -121,6 +121,10 @@ Assignment - 1
         display the result of the operation
 
 
+Functions
+    - can return more than one result
+    - variadic functions
+
 
 
 
