@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-var DivideByZeroError = errors.New("Invalid arguments. divide by zero")
+var DivideByZeroError error = errors.New("Invalid arguments. divide by zero")
 
 func main() {
 	fmt.Println(divide(100, 7))
