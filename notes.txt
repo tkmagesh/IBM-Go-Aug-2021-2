@@ -149,3 +149,13 @@ isPrime(10) //=> NO processing, returning false
 isPrime(11) //=> processing, returning true
 isPrime(11) //=> NO processing, returning true
 isPrime(10) //=> processing, returning false
+
+Collections
+    - Array
+        Fixed size collection of values of the same type
+        
+    - Slice
+        Dynamic size collection of values of the same type
+        Wrapper on an array
+
+    - Map

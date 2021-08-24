@@ -19,7 +19,7 @@ func main() {
 	var n1, n2 = 10, 20
 
 	fmt.Println("Before swap, n1 = ", n1, " n2 = ", n2)
-	swap( /* .... */ )
+	swap(&n1, &n2)
 	fmt.Println("After swap, n1 = ", n1, " n2 = ", n2)
 }
 
@@ -33,6 +33,6 @@ func increment(x *int) {
 	*x += 1
 }
 
-func swap( /* ... */ ) {
-	/* ... */
+func swap(n1, n2 *int) {
+	*n1, *n2 = *n2, *n1
 }
