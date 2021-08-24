@@ -59,4 +59,32 @@ func main() {
 	fmt.Println("names[:3] => ", names[:3])
 	fmt.Println("names[3:] => ", names[3:])
 
+	//maps
+	var cityRanks map[string]int = map[string]int{
+		"Bengaluru": 4,
+		"Mysuru":    2,
+		"Udupi":     1,
+		"Mangaluru": 3,
+	}
+	fmt.Println(cityRanks, len(cityRanks))
+
+	var rankOfMysuru = cityRanks["Mysuru"]
+	fmt.Println("Rank of Mysuru => ", rankOfMysuru)
+
+	//adding a new key/value pair
+	cityRanks["Pune"] = 5
+	fmt.Println(cityRanks)
+
+	//check if a key exists or not
+	if _, ok := cityRanks["Chennai"]; ok {
+		fmt.Println("Chennai exists in the map")
+	} else {
+		fmt.Println("Chennai does not exist in the map")
+	}
+
+	//iterating through a map
+	for city, rank := range cityRanks {
+		fmt.Println(city, rank)
+	}
+
 }

@@ -153,9 +153,10 @@ isPrime(10) //=> processing, returning false
 Collections
     - Array
         Fixed size collection of values of the same type
-        
+
     - Slice
         Dynamic size collection of values of the same type
         Wrapper on an array
 
     - Map
+        collection of key/value pairs
