@@ -6,26 +6,29 @@ import (
 )
 
 func main() {
-	var userChoice, 
 	for {
-		
+		userChoice := getUserChoice()
 		switch userChoice {
 		case 1, 2, 3, 4:
-			
+			processUserChoice(userChoice)
 		case 5:
 			os.Exit(0)
 		default:
 			fmt.Println("Invalid choice")
 		}
-		fmt.Println("Result = ", result)
 	}
-
 }
 
-func processUserChoice(userChoice int){
-	var n1, n2, result int
+func getOperands() (int, int) {
+	var n1, n2 int
 	fmt.Println("Enter two numbers:")
 	fmt.Scanf("%d %d", &n1, &n2)
+	return n1, n2
+}
+
+func processUserChoice(userChoice int) {
+	var result int
+	n1, n2 := getOperands()
 	switch userChoice {
 	case 1:
 		result = add(n1, n2)
@@ -36,21 +39,22 @@ func processUserChoice(userChoice int){
 	case 4:
 		result = divide(n1, n2)
 	}
+	fmt.Println("Result = ", result)
 }
 
-func add(x,y int) int {
+func add(x, y int) int {
 	return x + y
 }
 
-func subtract(x,y int) int {
+func subtract(x, y int) int {
 	return x - y
 }
 
-func multiply(x,y int) int {
+func multiply(x, y int) int {
 	return x * y
 }
 
-func divide(x,y int) int {
+func divide(x, y int) int {
 	return x / y
 }
 
