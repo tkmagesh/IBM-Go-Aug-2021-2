@@ -5,6 +5,8 @@ import (
 	"modularity_app/calculator"
 	"modularity_app/calculator/utils"
 	sp "modularity_app/spinner"
+
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -14,15 +16,16 @@ func main() {
 
 	fmt.Println(utils.IsPrime(71))
 
-	fmt.Println("Spinner")
-	fmt.Println(sp.Increment())
-	fmt.Println(sp.Increment())
-	fmt.Println(sp.Increment())
-	fmt.Println(sp.Increment())
+	color.Red("Spinner")
+	color.Yellow("%d\n", sp.Increment())
+	color.Yellow("%d\n", sp.Increment())
+	color.Yellow("%d\n", sp.Increment())
+	color.Yellow("%d\n", sp.Increment())
 
-	fmt.Println(sp.Decrement())
-	fmt.Println(sp.Decrement())
-	fmt.Println(sp.Decrement())
-	fmt.Println(sp.Decrement())
-	fmt.Println(sp.Decrement())
+	color.Green("%d\n", sp.Decrement())
+	color.Green("%d\n", sp.Decrement())
+	color.Green("%d\n", sp.Decrement())
+	color.Green("%d\n", sp.Decrement())
+	color.Green("%d\n", sp.Decrement())
+
 }

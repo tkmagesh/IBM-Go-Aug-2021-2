@@ -198,6 +198,17 @@ go.mod
 To create the module file
     go mod init <module_name>
 
+To install any third party module
+    go get <module_name>
+
+To remove unused package dependencies in the go.mod file
+    go mod tidy
+
+To localize the code of all the dependencies in the go.mod file
+    go mod vendor
+
+
+
 
 
     
