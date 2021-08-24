@@ -178,3 +178,26 @@ Assignment-4
 
     Output:
         The size of the word that occurs the most by size = 7 with number of occurances = 13
+
+$GOPATH
+    bin
+    pkg
+    src
+        github.com
+            tkmagesh
+                app-1
+                    pkg-1
+                        a.go
+                    pkg-2
+                        b.go
+                    main.go
+                app-2
+
+go.mod
+
+To create the module file
+    go mod init <module_name>
+
+
+
+    
