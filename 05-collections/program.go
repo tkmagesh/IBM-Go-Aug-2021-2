@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func main() {
 	//Arrays
@@ -87,4 +90,6 @@ func main() {
 		fmt.Println(city, rank)
 	}
 
+	s := "Officia enim irure aute eiusmod mollit cupidatat veniam duis"
+	fmt.Println(strings.Split(s, " "))
 }
