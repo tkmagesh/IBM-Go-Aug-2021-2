@@ -12,8 +12,8 @@ func main() {
 	ch := make(chan int)
 	wg.Add(1)
 	go add(2, 3, ch)
+	result := <-ch //rading data from the channel
 	wg.Wait()
-	result := <-ch //reading data from the channel
 	fmt.Println(result)
 
 }
