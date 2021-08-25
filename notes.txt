@@ -218,7 +218,11 @@ To localize the code of all the dependencies in the go.mod file
     go mod vendor
 
 
-
+io related packages
+    io
+    os
+    io/ioutil
+    bufio
 
 
     
