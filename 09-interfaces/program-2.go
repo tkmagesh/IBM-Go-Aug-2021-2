@@ -8,8 +8,8 @@ type Product struct {
 type Dummy struct {
 }
 
-func (d *Dummy) M() {
-
+func (d Dummy) M() {
+	fmt.Println("Dummy method")
 }
 
 type I interface {
@@ -49,10 +49,10 @@ func main() {
 		fmt.Println("Empty struct")
 	case Product:
 		fmt.Println("Instance of Product => ", v)
-	/* case I:
-	fmt.Println("implementation of I => ", v) */
+	case I:
+		fmt.Println("implementation of I => ", v)
 	default:
-		fmt.Println("Unknown type")
+		fmt.Println("Unknown value")
 	}
 
 }
