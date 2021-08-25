@@ -57,6 +57,7 @@ Why Golang?
                 channel datatype
                 select statement
                 close function
+                <- operator for reading/writing data into the channel
         Parallel ready
 
     - compiled
