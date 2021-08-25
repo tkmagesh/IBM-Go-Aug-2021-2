@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sort"
+)
 
 /* Product Type */
 type Product struct {
@@ -69,6 +72,65 @@ func (products Products) All(predicate func(Product) bool) bool {
 	return true
 }
 
+func (products Products) Sort() {
+	sort.Sort(products)
+}
+
+func (products Products) SortByName(desc bool) {
+	if desc {
+		sort.Sort(ByNameDesc{products})
+	} else {
+		sort.Sort(ByName{products})
+	}
+
+}
+
+func (products Products) SortByCost() {
+	sort.Sort(ByCost{products})
+}
+
+/* Sorting */
+// should be able to sort the products by any attribute
+// important : Use the sort.Sort() function
+
+func (products Products) Len() int {
+	return len(products)
+}
+
+func (products Products) Less(i, j int) bool {
+	return products[i].Id < products[j].Id
+}
+
+func (products Products) Swap(i, j int) {
+	products[i], products[j] = products[j], products[i]
+}
+
+//Sort by Name
+type ByName struct {
+	Products
+}
+
+func (products ByName) Less(i, j int) bool {
+	return products.Products[i].Name < products.Products[j].Name
+}
+
+type ByNameDesc struct {
+	Products
+}
+
+func (products ByNameDesc) Less(i, j int) bool {
+	return products.Products[i].Name > products.Products[j].Name
+}
+
+//Sort by Cost
+type ByCost struct {
+	Products
+}
+
+func (products ByCost) Less(i, j int) bool {
+	return products.Products[i].Cost < products.Products[j].Cost
+}
+
 func main() {
 	products := Products{
 		{105, "Pen", 50, 5, "Stationary"},
@@ -114,4 +176,21 @@ func main() {
 	allCostlyProducts := products.All(costlyProductPredicate)
 	fmt.Println("Are all products  costly products? : ", allCostlyProducts)
 
+	fmt.Println()
+	fmt.Println("Sorting")
+	fmt.Println("Default Sort")
+	sort.Sort(products)
+	fmt.Println(products)
+
+	fmt.Println()
+	fmt.Println("Sort by Name")
+	//sort.Sort(ByName{products})
+	products.SortByName(false)
+	fmt.Println(products)
+
+	fmt.Println()
+	fmt.Println("Sort by Cost")
+	//sort.Sort(ByCost{products})
+	products.SortByCost()
+	fmt.Println(products)
 }
