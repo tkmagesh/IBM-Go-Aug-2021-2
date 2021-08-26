@@ -21,6 +21,8 @@ func main() {
 	//doRequestResponse(clientConn)
 	//doClientStreaming(clientConn)
 	//doServerStreaming(clientConn)
+	time.Sleep(5 * time.Second)
+	fmt.Println("Starting bidi streaming")
 	doBiDirectionalStreaming(clientConn)
 }
 
