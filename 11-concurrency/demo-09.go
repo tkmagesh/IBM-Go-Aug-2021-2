@@ -1,17 +1,30 @@
 package main
 
-import "time"
+import (
+	"sync"
+	"time"
+)
 
 func main() {
-	print("Hello", time.Second*2)
-	print("World", time.Second*1)
+	wg := &sync.WaitGroup{}
+	wg.Add(2)
+	ch1 := make(chan int)
+	ch2 := make(chan int)
+	go print("Hello", time.Second*2, ch1, ch2, wg)
+	go print("World", time.Second*1, ch2, ch1, wg)
+	ch1 <- 1
+	//TO BE FIXED
+	wg.Wait()
 }
 
-func print(str string, delay time.Duration /* other parameter */) {
+func print(str string, delay time.Duration, ch1, ch2 chan int, wg *sync.WaitGroup) {
 	for i := 0; i < 5; i++ {
+		<-ch1
 		time.Sleep(delay)
 		println(str)
+		ch2 <- 1
 	}
+	wg.Done()
 }
 
 /*
