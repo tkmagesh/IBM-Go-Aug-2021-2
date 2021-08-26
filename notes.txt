@@ -237,4 +237,8 @@ GRPC
         protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative proto/service.proto
 
 
-    
+    In the application folder install the following libraries
+        go get google.golang.org/grpc
+        go get google.golang.org/protobuf
+        go get google.golang.org/protobuf/reflect/protoreflect@v1.25.0
+        go get google.golang.org/protobuf/runtime/protoimpl@v1.25.0
