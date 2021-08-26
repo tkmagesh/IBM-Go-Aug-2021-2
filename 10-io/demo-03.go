@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"io"
 	"os"
 	"strings"
@@ -11,6 +12,7 @@ type AlphaReader struct {
 }
 
 func (alphaReader AlphaReader) Read(p []byte) (int, error) {
+	fmt.Println("Buffer size = ", len(p))
 	inputData := make([]byte, len(p))
 	count, err := alphaReader.Src.Read(inputData)
 	if err != nil {
