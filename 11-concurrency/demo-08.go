@@ -6,7 +6,8 @@ import (
 	"time"
 )
 
-var wg *sync.WaitGroup = &sync.WaitGroup{}
+//var wg *sync.WaitGroup = &sync.WaitGroup{}
+var wg sync.WaitGroup
 
 func main() {
 	count := make(chan int)
