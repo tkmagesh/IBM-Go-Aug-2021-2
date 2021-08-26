@@ -20,7 +20,8 @@ func main() {
 	clientConn := proto.NewAppServiceClient(client)
 	//doRequestResponse(clientConn)
 	//doClientStreaming(clientConn)
-	doServerStreaming(clientConn)
+	//doServerStreaming(clientConn)
+	doBiDirectionalStreaming(clientConn)
 }
 
 func doRequestResponse(clientConn proto.AppServiceClient) {
@@ -75,4 +76,69 @@ func doServerStreaming(clientConn proto.AppServiceClient) {
 		}
 		fmt.Println("Received : ", resp.GetNo())
 	}
+}
+
+func doBiDirectionalStreaming(client proto.AppServiceClient) {
+	stream, err := client.Greet(context.Background())
+	if err != nil {
+		log.Fatalln(err)
+	}
+	requestData := []*proto.GreetRequest{
+		&proto.GreetRequest{
+			Greeting: &proto.Greeting{
+				FirstName: "Magesh",
+				LastName:  "Kuppan",
+			},
+		},
+		&proto.GreetRequest{
+			Greeting: &proto.Greeting{
+				FirstName: "Suresh",
+				LastName:  "Kannan",
+			},
+		},
+		&proto.GreetRequest{
+			Greeting: &proto.Greeting{
+				FirstName: "Ramesh",
+				LastName:  "Jayaraman",
+			},
+		},
+		&proto.GreetRequest{
+			Greeting: &proto.Greeting{
+				FirstName: "Rajesh",
+				LastName:  "Pandit",
+			},
+		},
+		&proto.GreetRequest{
+			Greeting: &proto.Greeting{
+				FirstName: "Naresh",
+				LastName:  "Kumar",
+			},
+		},
+	}
+
+	go func() {
+		for _, req := range requestData {
+			stream.Send(req)
+		}
+		stream.CloseSend()
+	}()
+	/* wg := &sync.WaitGroup{}
+	wg.Add(1) */
+	done := make(chan bool)
+	go func() {
+		for {
+			res, err := stream.Recv()
+			if err == io.EOF {
+				fmt.Println("Thats all folks!")
+				break
+			}
+			if err != nil {
+				log.Fatalln(err)
+			}
+			log.Println("Greet Result:", res.GetGreetMessage())
+		}
+		//done <- true
+		close(done)
+	}()
+	<-done
 }
