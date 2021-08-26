@@ -20,6 +20,8 @@ const _ = grpc.SupportPackageIsVersion7
 type AppServiceClient interface {
 	//request & response
 	Add(ctx context.Context, in *AddRequest, opts ...grpc.CallOption) (*AddResponse, error)
+	//client streaming
+	Average(ctx context.Context, opts ...grpc.CallOption) (AppService_AverageClient, error)
 }
 
 type appServiceClient struct {
@@ -39,12 +41,48 @@ func (c *appServiceClient) Add(ctx context.Context, in *AddRequest, opts ...grpc
 	return out, nil
 }
 
+func (c *appServiceClient) Average(ctx context.Context, opts ...grpc.CallOption) (AppService_AverageClient, error) {
+	stream, err := c.cc.NewStream(ctx, &AppService_ServiceDesc.Streams[0], "/proto.AppService/Average", opts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &appServiceAverageClient{stream}
+	return x, nil
+}
+
+type AppService_AverageClient interface {
+	Send(*AverageRequest) error
+	CloseAndRecv() (*AverageResponse, error)
+	grpc.ClientStream
+}
+
+type appServiceAverageClient struct {
+	grpc.ClientStream
+}
+
+func (x *appServiceAverageClient) Send(m *AverageRequest) error {
+	return x.ClientStream.SendMsg(m)
+}
+
+func (x *appServiceAverageClient) CloseAndRecv() (*AverageResponse, error) {
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	m := new(AverageResponse)
+	if err := x.ClientStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // AppServiceServer is the server API for AppService service.
 // All implementations must embed UnimplementedAppServiceServer
 // for forward compatibility
 type AppServiceServer interface {
 	//request & response
 	Add(context.Context, *AddRequest) (*AddResponse, error)
+	//client streaming
+	Average(AppService_AverageServer) error
 	mustEmbedUnimplementedAppServiceServer()
 }
 
@@ -54,6 +92,9 @@ type UnimplementedAppServiceServer struct {
 
 func (UnimplementedAppServiceServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (UnimplementedAppServiceServer) Average(AppService_AverageServer) error {
+	return status.Errorf(codes.Unimplemented, "method Average not implemented")
 }
 func (UnimplementedAppServiceServer) mustEmbedUnimplementedAppServiceServer() {}
 
@@ -86,6 +127,32 @@ func _AppService_Add_Handler(srv interface{}, ctx context.Context, dec func(inte
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AppService_Average_Handler(srv interface{}, stream grpc.ServerStream) error {
+	return srv.(AppServiceServer).Average(&appServiceAverageServer{stream})
+}
+
+type AppService_AverageServer interface {
+	SendAndClose(*AverageResponse) error
+	Recv() (*AverageRequest, error)
+	grpc.ServerStream
+}
+
+type appServiceAverageServer struct {
+	grpc.ServerStream
+}
+
+func (x *appServiceAverageServer) SendAndClose(m *AverageResponse) error {
+	return x.ServerStream.SendMsg(m)
+}
+
+func (x *appServiceAverageServer) Recv() (*AverageRequest, error) {
+	m := new(AverageRequest)
+	if err := x.ServerStream.RecvMsg(m); err != nil {
+		return nil, err
+	}
+	return m, nil
+}
+
 // AppService_ServiceDesc is the grpc.ServiceDesc for AppService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -98,6 +165,12 @@ var AppService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _AppService_Add_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "Average",
+			Handler:       _AppService_Average_Handler,
+			ClientStreams: true,
+		},
+	},
 	Metadata: "proto/service.proto",
 }
