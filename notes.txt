@@ -242,3 +242,10 @@ GRPC
         go get google.golang.org/protobuf
         go get google.golang.org/protobuf/reflect/protoreflect@v1.25.0
         go get google.golang.org/protobuf/runtime/protoimpl@v1.25.0
+
+
+To run the server
+    run the following command from the application folder
+        go run server/server.go 
+
+        
